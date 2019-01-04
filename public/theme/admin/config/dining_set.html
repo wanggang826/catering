@@ -1,0 +1,164 @@
+<script src="{$static_path}/js/uploadImg.js"></script>
+<form class="form-horizontal js-ajax-form clearfix" action="{:U('dining_set')}" method='post'>
+<!-- 自定义大小 -->
+    <div class="col-sm-12 row">
+        <div class="form-group" style="margin:80px auto;">
+            <h1 for="user_sn" class="text-center ">餐厅信息</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="user_sn" class="col-sm-4 control-label">餐厅名称</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="dining_name" class="form-control" id="user_sn" value="{:isset($data) ? $data.dining_name : ''}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nickname" class="col-sm-4 control-label">联系方式</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="phone" class="form-control" id="nickname" value="{:isset($data) ? $data.phone : ''}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="business_hours" class="col-sm-4 control-label">服务时间</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="business_hours" class="form-control" id="business_hours" value="{:isset($data) ? $data.business_hours : ''}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="room_min" class="col-xs-4 control-label">包间人数</label>
+                    <div class="col-xs-5" style="width:60%;">
+                        <ul class="list-inline">
+                            <li><input type="text" name="room_min" width="20px" placeholder="包间最小人数" class="form-control" id="room_min" value="{:isset($room_info.room_min) ? $room_info.room_min : ''}"></li>
+                            <li>--</li>
+                            <li><input type="text" name="room_max" width="20px" placeholder="包间最大人数"  class="form-control" id="room_max" value="{:isset($room_info.room_max) ? $room_info.room_max : ''}"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="business_hours" class="col-sm-4 control-label">最多提前预定天数</label>
+                    <div class="col-sm-5">
+                        <input type="number" name="max_days" class="form-control" id="max_days" value="{:isset($max_day) ? $max_day: ''}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="room_max" class="col-sm-4 control-label">预定时间开始时间</label>
+                    <div class="col-sm-5">
+                        <ul class="list-inline">
+                            <li>
+                                <select class=" form-control" name="begin_hour" id="begin_hour" >
+                                    {for start="1" end="25"}
+                                        <option value="{$i}"{if condition="$time_info.begin_hour == $i"}selected{/if}>{$i}</option>
+                                    {/for}
+                                </select>
+                            </li>
+                            <li>
+                                <select class=" form-control" name="begin_min" >
+                                    <option value="30" {if condition="$time_info.begin_min == '30'"}selected{/if}>30</option>
+                                    <option value="0" {if condition="$time_info.begin_min == '00'"}selected{/if}>00</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="room_max" class="col-sm-4 control-label">预定时间结束时间</label>
+                    <div class="col-sm-5">
+                        <ul class="list-inline">
+                            <li>
+                                <select class=" form-control" name="end_hour" id="end_hour" >
+                                    {for start="1" end="25"}
+                                    <option value="{$i}" {if condition="$time_info.end_hour == $i"}selected{/if}>{$i}</option>
+                                    {/for}
+                                </select>
+                            </li>
+                            <li>
+                                <select class=" form-control" name="end_min" >
+                                    <option value="30" {if condition="$time_info.end_min == '30'"}selected{/if}>30</option>
+                                    <option value="0" {if condition="$time_info.end_min == '00'"}selected{/if}>00</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">餐厅图片</label>
+                    <div class="img_cont">
+                        <div class="img_prev" id="img_prev" {if condition="isset($data.image)"}style="display: none"{/if}></div>
+                        <input type="file" name="image" id="image"  value=""/>
+                        {if condition="isset($data.image)"}
+                            <img src="__UPLOAD__{$data.image}" id="img-before" title="移除并修改">
+                        {/if}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">详细地址</label>
+            <div class="col-sm-8">
+                <textarea name="address"  placeholder="备注长度不可大于240个字符" class="form-control">{:isset($data.address) ? $data.address : ''}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">餐厅介绍</label>
+            <div class="col-sm-8">
+                <textarea name="dining_desc"  placeholder="备注长度不可大于240个字符" class="form-control">{:isset($data.address) ? $data.address : ''}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-5 control-label"></label>
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-info js-submit-btn mr_3px">确认</button>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    $(function(){
+        //新增banner
+        $('#image').imgUpload({
+            width:375,//预览宽度
+            height:188,//预览高度
+            maxSize: 500,//允许上传最大值(KB)
+            imgWidth:375,//图片上传宽度
+            imgHeight:188,//图片上传高度
+            allowedNum:1,//允许上传最大数量
+            files:{
+                1:'{getImg}',
+            }
+        })
+
+        $('#img-before').on('click',function(){
+//            console.log('ok');
+            $('#img_prev').show();
+            $(this).hide();
+        })
+
+        $('#room_max').on('blur',function(){
+            var min = $('#room_min').val();
+            var max = $(this).val();
+            if(parseInt(min) > parseInt(max)){
+                layer.msg('预定最小人数大于最大人数')
+            }
+        })
+
+        $('#end_hour').on('change',function(){
+            var begin_val = $('#begin_hour').val();
+            var end_val = $(this).val();
+            if(parseInt(end_val) < parseInt(begin_val)){
+                layer.msg('预定结束时间大于开始时间')
+            }
+        })
+
+    })
+
+</script>
+
+

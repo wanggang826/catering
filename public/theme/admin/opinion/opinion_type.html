@@ -1,0 +1,102 @@
+<form class="form-horizontal js-ajax-form clearfix" action="{:U('opinion_type')}" method='post'>
+<!-- 自定义大小 -->
+    <div class="form-group">
+        <h1 for="user_sn" class="text-center ">意见反馈类型维护</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>反馈类型名称</th>
+            <th></th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {if condition="isset($types)"}
+            {volist name="types" id="vo"}
+            <tr>
+                <td class="cl-id">{$vo.id}</td>
+                <td scope="row">
+                    <input type="hidden" name="id[{$vo.id}]" value="{$vo.id}">
+                    <input type="text" name="name[{$vo.id}]" class="form-control" value="{$vo.name}">
+                </td>
+                <td></td>
+                <td>
+                    <span class="btn-group">
+                        <a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs add-btn " title="添加"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">添加</span></a>
+                        <a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs  del-btn" title="最少设置一个"><i class="fa fa-edit fa-fw" disabled="disabled"></i><span class="hidden-xs" disabled="disabled">移除</span></a>
+                    </span>
+                </td>
+            </tr>
+            {/volist}
+        {else/}
+        <tr>
+            <td class="cl-id">1</td>
+            <td scope="row">
+                <input type="hidden" name="id[1]" value="1">
+                <input type="text" name="name[1]" class="form-control" value="">
+            </td>
+            <td></td>
+            <td>
+                    <span class="btn-group">
+                        <a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs add-btn " title="添加"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">添加</span></a>
+                        <a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs  del-btn" title="最少设置一个"><i class="fa fa-edit fa-fw" disabled="disabled"></i><span class="hidden-xs" disabled="disabled">移除</span></a>
+                    </span>
+            </td>
+        </tr>
+        {/if}
+
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <label class="col-sm-4 control-label"></label>
+        <div class="col-sm-5">
+            <button type="submit" class="btn btn-info js-submit-btn mr_3px">确认</button>
+        </div>
+    </div>
+</form>
+<script>
+    $(function(){
+        var num = $('table .cl-id:last').text();
+        num = parseInt(num) + 1;
+        //添加
+        $('table').on('click','.add-btn',function(){
+            var tr = '';
+            tr += '<tr>'+
+                '<td class="cl-id">'+num+'</td>'+
+                '<td scope="row">'+
+                '<input type="hidden" name="id['+num+']" value="'+num+'">'+
+                '<input type="text" name="name['+num+']" class="form-control" value="">'+
+                '</td>'+
+                '<td></td>'+
+                '<td>'+
+                '<span class="btn-group">'+
+                '<a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs  add-btn" title="添加"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">添加</span></a>'+
+                '<a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs del-btn" title="移除"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">移除</span></a>'+
+                '</span>'+
+                '</td>'+
+                '</tr>';
+            num ++;
+
+            $('tbody').append(tr);
+        })
+        //删除
+        $('table').on('click','.del-btn',function(){
+            var _this = $(this);
+            var len = $('table tr').length;
+
+            if(len == 2){
+                layer.msg('已经是最后一个了！！');
+            }else{
+                _this.closest('tr').detach();
+            }
+
+        })
+
+
+    })
+</script>
+

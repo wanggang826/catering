@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+    <div class="panel-heading hidden-xs">条件搜索</div>
+    <form role="form" action="{:url('Waiting/queuingList')}" class="form-inline panel-body hidden-xs">
+        <div class="form-group">
+            排号：<input type="text" placeholder="请输入排号查询" id="sort_sn" class="form-control" name="sort_sn" value="{:input('sort_sn')}">
+        </div>
+
+        <div class="form-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-outline btn-w-m btn-rec">
+                    <i class="fa fa-search"></i><span class="btn-desc">&nbsp;查询</span>
+                </button>
+                <a href="{:url('')}" class="btn btn-default btn-outline btn-rec">
+                    <i class="fa fa-refresh"></i><span class="btn-desc">&nbsp;重置</span>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div class="panel-footer clearfix ">
+        <div class="pull-right">
+            {$page}
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th width="50">序号</th>
+            <th width="150">排号</th>
+            <th width="150">就餐人数</th>
+            <th width="150">排号时间</th>
+            <th width="100">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.sort_sn}</td>
+            <td>{$vo.num}</td>
+            <td>{$vo.create_time}</td>
+            <td>
+                {if condition="$vo.status eq 0"}
+                <a href="{:url('changeStatus',['table'=>'queuing', 'pk'=>'id','id'=>$vo.id,'status'=>1])}" js-color="#eea236" class="btn btn-danger btn-outline btn-xs js-del-btn" text="确定设为过号吗？"><i class="fa fa-times fa-fw"></i><span class="hidden-xs">设为过号</span></a>
+                {else/}
+                <a href="#"><i class="fa fa-times fa-fw"></i><span class="hidden-xs">已过号</span></a>
+                {/if}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+
+
+

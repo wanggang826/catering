@@ -1,0 +1,126 @@
+<form class="form-horizontal js-ajax-form clearfix" action="{:U('coupon_add')}" method='post'>
+<!-- 自定义大小 -->
+    <div class="form-group" style="margin:50px 0px">
+        <h1 for="user_sn" class="text-center ">积分抽奖设置</h1>
+    </div>
+
+    <div class="row" style="margin:50px 0px">
+        <div class="col-xs-12">
+            <label class="col-xs-2 control-label"><span class="pull-right">有效期</span></label>
+            <div class="col-xs-4">
+                <input type="text" name="valid_start" class="form-control i-datestart"  id="date2" placeholder="有效期(起)" value="{:input('start_time')}">
+            </div>
+            <div  class="col-xs-1">
+                <label class="col-xs-1 control-label">to</label>
+            </div>
+
+            <div class="col-xs-4">
+                <input type="text" name="valid_end" class="form-control i-dateend" id="date3" placeholder="有效期(末)" value="{:input('end_time')}">
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin:50px 0px">
+        <div class="col-xs-12">
+            <!--<label class="col-xs-2 control-label"></label>-->
+            <div class="col-xs-11">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">张数</th>
+                        <th class="text-center">优惠券金额</th>
+                        <th class="text-center">发放规则</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="cl-id"><input type="text" name="count[1]" class="form-control" value=""></td>
+                        <td>
+                            <input type="text" name="money[1]" class="form-control" value="">
+                        </td>
+                        <td>
+                            <select class=" form-control" name="out_role[1]" >
+                                <option value="">请选择发放规则</option>
+                                <option value="1">按消费金额从高到低</option>
+                                <option value="2">按消费金额从低到高</option>
+                                <option value="3">按积分从高到低</option>
+                                <option value="4">按积分从低到高</option>
+                                <option value="5">无限发放</option>
+                            </select>
+                        </td>
+                        <td class="text-center">
+                        <span class="btn-group">
+                            <a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs add-btn " title="添加"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">添加</span></a>
+                            <a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs  del-btn" title="最少设置一个"><i class="fa fa-edit fa-fw" disabled="disabled"></i><span class="hidden-xs" disabled="disabled">移除</span></a>
+                        </span>
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="col-xs-6 col-sm-6 control-label"></label>
+        <div class="col-xs-6 col-sm-6">
+            <button type="submit" class="btn btn-info js-submit-btn mr_3px">确认</button>
+        </div>
+    </div>
+</form>
+<script>
+    $(function(){
+        var num = $('table tr').length;
+        num = parseInt(num);
+        //添加
+        $('table').on('click','.add-btn',function(){
+            var tr = '';
+            tr += '<tr>'+
+                '<td class="cl-id"><input type="text" name="count['+num+']" class="form-control" value=""></td>'+
+                '<td>'+
+                '<input type="text" name="money['+num+']" class="form-control" value="">'+
+                '</td>'+
+                '<td>'+
+                '<select class=" form-control" name="out_role['+num+']" >'+
+                '<option value="">请选择发放规则</option>'+
+                '<option value="1">按消费金额从高到低</option>'+
+                '<option value="2">按消费金额从低到高</option>'+
+                '<option value="3">按积分从高到低</option>'+
+                '<option value="4">按积分从低到高</option>'+
+                '<option value="5">无限发放</option>'+
+                '</select>'+
+                '</td>'+
+                '<td class="text-center">'+
+                '<span class="btn-group">'+
+                '<a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs add-btn " title="添加"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">添加</span></a>'+
+                '<a href="javascript:void(0);" class="btn btn-default btn-outline btn-xs  del-btn" title="移除"><i class="fa fa-edit fa-fw" disabled="disabled"></i><span class="hidden-xs" disabled="disabled">移除</span></a>'+
+                '</span>'+
+                '</td>'+
+                '</tr>';
+            num ++;
+
+            $('tbody').append(tr);
+        })
+        //删除
+        $('table').on('click','.del-btn',function(){
+            var _this = $(this);
+            var len = $('table tr').length;
+
+            if(len == 2){
+                layer.msg('已经是最后一个了！！');
+            }else{
+                _this.closest('tr').remove();
+            }
+
+        })
+
+
+    })
+</script>
+

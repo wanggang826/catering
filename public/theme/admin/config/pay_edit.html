@@ -1,0 +1,20 @@
+<form class="form-horizontal js-ajax-form clearfix" action="{:U('pay_edit')}" method='post'>
+    <!-- 自定义大小 -->
+    {foreach $config as $key => $value}
+    <div class="form-group">
+        <label class="col-sm-2 control-label">{$value['name']}<input type="hidden" name="{$key}[name]" value="{$value['name']}"></label>
+        <div class="col-sm-4">
+            <input type="text" name="{$key}[val]" class="form-control" value="{$value.val}">
+        </div>
+        <label>{$value['desc']}<input type="hidden" name="{$key}[desc]" value="{$value['desc']}"></label>
+    </div>
+    {/foreach}
+    <input type="text" value='{$id}' name="id" style="visibility: hidden;">
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-info js-submit-btn mr_3px">确认</button>
+            <button type="reset" class="btn btn-info">重置</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,60 @@
+
+<script src="/public/static/js/uploadImg.js"></script>
+<form class="form-horizontal js-ajax-form clearfix" enctype="multipart/form-data" method='post' action="">
+
+    <div class="form-group">
+        <label for="goods_sn" class="col-sm-2 control-label">商品编码：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_sn" value="{$goods.goods_sn}" disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="goods_sn" class="col-sm-2 control-label"> 商品名称：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_name" value="{$goods.goods_name}" disabled>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="goods_price" class="col-sm-2 control-label"> 原价：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_price" value="{$goods.goods_price}" disabled>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="discount" class="col-sm-2 control-label"> 折扣：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="discount" value="{$goods.discount}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="discount_price" class="col-sm-2 control-label"> 折扣价：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="discount_price" value="{$goods.discount_price}" readonly>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label"></label>
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-info js-submit-btn mr_3px">提交</button>
+            <button type="reset" name="reset" class="btn btn-info">重置</button>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $("input[name='discount']").blur(function () {
+        var discount = $(this).val();
+        var goods_price = $("input[name='goods_price']").val();
+        var real_price = (discount * goods_price /10).toFixed(2);
+        $("input[name='discount_price']").val(real_price)
+    })
+</script>

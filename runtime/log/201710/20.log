@@ -1,0 +1,51 @@
+---------------------------------------------------------------
+[ 2017-10-20T10:46:15+08:00 ] 127.0.0.1 127.0.0.1 GET /callback/qq
+[ info ] ka.com/callback/qq [运行时间：0.289016s][吞吐率：3.46req/s] [内存消耗：1,219.02kb] [文件加载：42]
+[ info ] [ LANG ] D:\www\alasika\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'callback',
+    1 => 'qq',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'ka.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\callback\controller\Qq->index[ D:\www\alasika\application\callback\controller\Qq.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-10-20T10:46:16+08:00 ] 127.0.0.1 127.0.0.1 GET /favicon.ico
+[ info ] ka.com/favicon.ico [运行时间：0.122404s][吞吐率：8.17req/s] [内存消耗：1,157.59kb] [文件加载：45]
+[ info ] [ LANG ] D:\www\alasika\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://ka.com/callback/qq',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'ka.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

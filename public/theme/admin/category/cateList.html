@@ -1,0 +1,94 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading hidden-xs">条件搜索</div>
+
+    <form role="form" action="" class="form-inline panel-body hidden-xs">
+        一级类别：
+        <div class="form-group">
+            <select name="pid" onchange="this.form.submit();" style="width: 150px; height: 34px;" class="form-control">
+                <option value="">全部</option>
+                {foreach($firstCate as $k=>$v)}
+                    <option value="{$v.cate_id}" {if condition="input('pid') eq $v.cate_id"} selected{/if}>{$v.name}</option>
+                {/foreach}
+            </select>
+        </div>
+        状态：
+        <div class="form-group">
+            <select name="status" onchange="this.form.submit();" style="width: 150px; height: 34px;" class="form-control">
+                <option value="">全部</option>
+                <option value="1" {if condition = "(input('status') neq '') && (input('status') == 1)")} selected {/if}>启用</option>
+                <option value="0" {if condition = "(input('status') neq '') && (input('status') == 0)")} selected {/if}>禁用</option>
+            </select>
+        </div>
+        <div class="form-group"><input type="text" class="form-control i-datestart laydate-icon" style="width: 150px; height: 34px;" name="start" id="start" placeholder="开始日期" onclick="laydate()" value="{:input('start')}">
+        </div>
+        <div class="form-group "><input type="text" class="form-control i-datestart laydate-icon" style="width: 150px; height: 34px;" name="end" id="end" placeholder="结束日期" onclick="laydate()" value="{:input('end')}"></div>
+
+        <div class="form-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-outline btn-w-m btn-rec">
+                    <i class="fa fa-search"></i><span class="btn-desc">&nbsp;查询</span>
+                </button>
+                <a href="{:url('')}" class="btn btn-default btn-outline btn-rec">
+                    <i class="fa fa-refresh"></i><span class="btn-desc">&nbsp;重置</span>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div class="panel-footer clearfix ">
+        <div class="pull-left btn-group hidden-xs" >
+            <a href="{:url('category/add')}" class="btn btn-default js-window-load" js-title="新增" js-unique="true">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;新增
+            </a>
+        </div>
+        <div class="pull-left btn-group hidden-xs">
+            <a href="{:url('batchOperation')}" class="btn btn-outline btn-default js-del-btn del-all" text="确定批量删除吗？">
+                <i class="fa fa-trash" aria-hidden="true" ></i>&nbsp;删除
+            </a>
+        </div>
+
+        <div class="pull-right">
+            {$page}
+        </div>
+    </div>
+
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th width='10'><input type="checkbox" class="my-all-check" name="input[]"></th>
+            <th width="150">一级类型</th>
+            <th width="150">二级类型</th>
+            <th width="150">计量单位</th>
+            <th width="150">状态</th>
+            <th width="150">创建时间</th>
+            <th width="100">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr>
+            <td width='10'><input type="checkbox" value="{$vo.cate_id}" id="checkOrder" class="i-checks" name="input[]"></td>
+            <td>{$vo.parent}</td>
+            <td>{$vo.name}</td>
+            <td>{$vo.unit}</td>
+            <td>{if condition="$vo.status eq 1"}启用{else/}禁用{/if}</td>
+            <td>{$vo.create_time}</td>
+            <td >
+                <span class="btn-group">
+                    <a href="{:url('edit',['cate_id'=>$vo.cate_id])}" class="btn btn-default btn-outline btn-xs js-window-load" title="编辑"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">编辑</span></a>
+                    {if condition="$vo.status eq 0"}
+                    <a href="{:url('changeStatus',['cate_id'=>$vo.cate_id,'status'=>1])}" js-color="#eea236" class="btn btn-default btn-outline btn-xs js-del-btn" text="启用它吗？"><i class="fa fa-check fa-fw"></i><span class="hidden-xs">启用</span></a>
+                    {else /}
+                    <a href="{:url('changeStatus',['cate_id'=>$vo.cate_id,'status'=>0])}" js-color="#eea236" class="btn btn-default btn-outline btn-xs js-del-btn" text="禁用它吗？"><i class="fa fa-times fa-fw"></i><span class="hidden-xs">禁用</span></a>
+                    {/if}
+                    <a href="{:url('del',['cate_id'=>$vo.cate_id])}" class="btn  btn-danger btn-outline btn-xs js-del-btn" text="删除后将无法恢复,请谨慎操作！"><i class="fa fa-trash-o fa-fw"></i><span class="hidden-xs">删除</span></a>
+                </span>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,14 @@
+#20171204 modify by tiway
+ALTER TABLE `cy_member`
+ADD COLUMN `sex`  enum('female','none','male') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'none' COMMENT '性别：none-未知，male-男，female-女' AFTER `nickname`;
+
+ALTER TABLE `cy_member`
+ADD COLUMN `user_phone`  varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '会员手机' AFTER `sex`;
+
+ALTER TABLE `cy_comment`
+ADD COLUMN `content`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '评论内容' AFTER `score`;
+
+
+
+
+

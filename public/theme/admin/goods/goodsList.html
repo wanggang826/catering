@@ -1,0 +1,105 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading hidden-xs">条件搜索</div>
+
+    <form role="form" action="" class="form-inline panel-body hidden-xs">
+        商品名称：
+        <div class="form-group">
+            <input type="text" class="form-control" name="goods_name" value="{:input('goods_name')}">
+        </div>
+        类型：
+        <div class="form-group">
+            <select name="cate_id" onchange="this.form.submit();" style="width: 150px; height: 34px;" class="form-control">
+                <option value="">全部</option>
+                {foreach($cate as $k=>$v)}
+                    <option value="{$v.cate_id}" {if condition="input('cate_id') eq $v.cate_id"} selected{/if}>{$v.name}</option>
+                {/foreach}
+            </select>
+        </div>
+        状态：
+        <div class="form-group">
+            <select name="is_sale" onchange="this.form.submit();" style="width: 150px; height: 34px;" class="form-control">
+                <option value="">全部</option>
+                <option value="1" {if condition = "(input('is_sale') neq '') && (input('is_sale') == 1)")} selected {/if}>上架</option>
+                <option value="0" {if condition = "(input('is_sale') neq '') && (input('is_sale') == 0)")} selected {/if}>下架</option>
+            </select>
+        </div>
+        <div class="form-group"><input type="text" class="form-control i-datestart laydate-icon" style="width: 150px; height: 34px;" name="start" id="start" placeholder="开始日期" onclick="laydate()" value="{:input('start')}">
+        </div>
+        <div class="form-group "><input type="text" class="form-control i-datestart laydate-icon" style="width: 150px; height: 34px;" name="end" id="end" placeholder="结束日期" onclick="laydate()" value="{:input('end')}"></div>
+
+        <div class="form-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-outline btn-w-m btn-rec">
+                    <i class="fa fa-search"></i><span class="btn-desc">&nbsp;查询</span>
+                </button>
+                <a href="{:url('')}" class="btn btn-default btn-outline btn-rec">
+                    <i class="fa fa-refresh"></i><span class="btn-desc">&nbsp;重置</span>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div class="panel-footer clearfix ">
+        <div class="pull-left btn-group hidden-xs" >
+            <a href="{:url('add')}" class="btn btn-default js-window-load" js-title="新增" js-unique="true">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;新增
+            </a>
+        </div>
+        <div class="pull-left btn-group hidden-xs">
+            <a href="{:url('batchOperation')}" class="btn btn-outline btn-default js-del-btn del-all" text="确定批量删除吗？">
+                <i class="fa fa-trash" aria-hidden="true" ></i>&nbsp;删除
+            </a>
+        </div>
+        <div class="pull-left btn-group hidden-xs">
+            <a href="{:url('toExcel')}" class="btn btn-outline btn-default" text="确定批量删除吗？">
+                <i class="fa fa-trash" aria-hidden="true" ></i>&nbsp;导出
+            </a>
+        </div>
+
+        <div class="pull-right">
+            {$page}
+        </div>
+    </div>
+
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th width='10'><input type="checkbox" class="my-all-check" name="input[]"></th>
+            <th width="150">商品编码</th>
+            <th width="150">商品名称</th>
+            <th width="150">价格</th>
+            <th width="150">类型</th>
+            <th width="150">计量单位</th>
+            <th width="100">创建时间</th>
+            <th width="100">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr>
+            <td width='10'><input type="checkbox" value="{$vo.goods_id}" id="checkOrder" class="i-checks" name="input[]"></td>
+            <td>{$vo.goods_sn}</td>
+            <td>{$vo.goods_name}</td>
+            <td>{$vo.goods_price}</td>
+            <td>{$vo.name}</td>
+            <td>{$vo.goods_unit}</td>
+            <td>{$vo.create_time}</td>
+            <td >
+                <span class="btn-group">
+                    <a href="{:url('edit',['goods_id'=>$vo.goods_id])}" class="btn btn-default btn-outline btn-xs js-window-load" title="编辑"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">编辑</span></a>
+                    {if condition="$vo.is_sale eq 0"}
+                    <a href="{:url('changeStatus',['goods_id'=>$vo.goods_id,'is_sale'=>1])}" js-color="#eea236" class="btn btn-default btn-outline btn-xs js-del-btn" text="上架它吗？"><i class="fa fa-check fa-fw"></i><span class="hidden-xs">上架</span></a>
+                    {else /}
+                    <a href="{:url('changeStatus',['goods_id'=>$vo.goods_id,'is_sale'=>0])}" js-color="#eea236" class="btn btn-default btn-outline btn-xs js-del-btn" text="下架它吗？"><i class="fa fa-times fa-fw"></i><span class="hidden-xs">下架</span></a>
+                    {/if}
+                    <a href="{:url('del',['goods_id'=>$vo.goods_id])}" class="btn  btn-danger btn-outline btn-xs js-del-btn" text="删除后将无法恢复,请谨慎操作！"><i class="fa fa-trash-o fa-fw"></i><span class="hidden-xs">删除</span></a>
+                </span>
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+

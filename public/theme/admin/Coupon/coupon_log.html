@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+    <form role="form" action="{:url('coupon_log')}" class="panel-body hidden-xs form-inline">
+         <div class="form-group group1">
+           <input type="text" name="start_time" class="form-control i-datestart"  id="date2" placeholder="使用日期(起)" value="{:input('start_time')}">
+        </div>
+        <div class="form-group group2">
+           <input type="text" name="end_time" class="form-control i-dateend" id="date3" placeholder="使用日期(末)" value="{:input('end_time')}">
+        </div>
+
+        <div class="form-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-outline btn-w-m btn-rec">
+                    <i class="fa fa-search"></i><span class="btn-desc">&nbsp;查询</span>
+                </button>
+                <a href="{:url('')}" class="btn btn-default btn-outline btn-rec">
+                    <i class="fa fa-refresh"></i><span class="btn-desc">&nbsp;重置</span>
+                </a>
+            </div>
+        </div>
+    </form>
+
+    <div class="panel-footer clearfix ">
+        <div class="pull-right">
+        {$lists->render()}
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed table-striped" id="sample001" data-name="cool-table">
+    <thead>
+        <tr>
+            <th width='150'>用户ID</th>
+            <th width="150" class="hidden-xs">昵称</th>
+            <th width="150">手机号</th>
+            <th width="150" class="hidden-xs">使用时间</th>
+            <th width="150" class="hidden-xs">优惠券金额</th>
+            <th width="150" class="hidden-xs">优惠券有效期</th>
+        </tr>
+    </thead>
+    <tbody>
+        {volist name="lists" id="vo"}
+		<tr>
+			<td>{$vo.id}</td>
+			<td>
+                {$vo.nickname}
+            </td>
+			<td>{$vo.user_phone}</td>
+			<td>{$vo.create_time}</td>
+			<td>
+                {$vo.money}
+            </td>
+			<td>{$vo.valid_start|date='Y/m/d',###}--{$vo.valid_end|date='Y/m/d',###}</td>
+		</tr>
+        {/volist}
+    </tbody>
+</table>
+</div>

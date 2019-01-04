@@ -1,0 +1,101 @@
+
+<script src="/public/static/js/uploadImg.js"></script>
+<form class="form-horizontal js-ajax-form clearfix" enctype="multipart/form-data" method='post' action="">
+
+    <div class="form-group">
+        <label for="goods_sn" class="col-sm-2 control-label">商品编码：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_sn" placeholder="自动生成" value="{$code}" readonly>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="goods_name" class="col-sm-2 control-label"> 商品名称：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cate_id" class="col-sm-2 control-label">商品类型：</label>
+        <div class="col-sm-4">
+            <select id="cate" class="define_select form-control" name="cate_id">
+                <option value="" >请选择分类</option>
+                {volist name="cate" id="vo"}
+                <option value="{$vo.cate_id}">{$vo.name}</option>
+                {/volist}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="goods_unit" class="col-sm-2 control-label"> 计量单位：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_unit">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="goods_price" class="col-sm-2 control-label"> 价格：</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="goods_price">
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 20px;">
+        <label for="goods_thumb" class="col-sm-2 control-label">商品封面</label>
+        <div class="img_cont">
+            <div class="img_prev"></div>
+            <input type="file" name="goods_thumb" id="goods_thumb">
+        </div>
+    </div>
+    <div class="form-group" style="margin-top: 20px;">
+        <label for="goods_img" class="col-sm-2 control-label">商品图片</label>
+        <div class="img_cont">
+            <div class="img_prev"></div>
+            <input type="file" name="goods_img" id="goods_img"/>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="desc" class="col-sm-2 control-label">描述</label>
+        <div class="col-sm-10">
+            <textarea name="desc" id="" cols="49" rows="5"></textarea>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="" class="col-sm-2 control-label"></label>
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-info js-submit-btn mr_3px">提交</button>
+            <button type="reset" name="reset" class="btn btn-info">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $('#goods_thumb').imgUpload({
+        // width:150,//预览宽度
+        // height:150,//预览高度
+        maxSize: 500,//允许上传最大值(KB)
+        imgWidth:220,//图片上传宽度
+        imgHeight:220,//图片上传高度
+        allowedNum:1,//允许上传最大数量
+        files:{
+            7:'{getImg}',
+        }
+    })
+    $('#goods_img').imgUpload({
+        // width:150,//预览宽度
+        // height:150,//预览高度
+        maxSize: 500,//允许上传最大值(KB)
+        allowedNum:4,//允许上传最大数量
+        files:{
+            7:'{getImg}',
+        }
+    })
+</script>

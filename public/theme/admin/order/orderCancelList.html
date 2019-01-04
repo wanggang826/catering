@@ -1,0 +1,70 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading hidden-xs">条件搜索</div>
+    <form role="form" action="{:url('Order/orderCancelList')}" class="form-inline panel-body hidden-xs">
+        <div class="form-group">
+            订单号：<input type="text" placeholder="" id="order_sn" class="form-control" name="order_sn"
+                       value="{:input('order_sn')}">
+        </div>
+        <div class="form-group">
+            用户名称：<input type="text" placeholder="" id="nickname" class="form-control" name="nickname"
+                        value="{:input('nickname')}">
+        </div>
+
+        <div class="form-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-outline btn-w-m btn-rec">
+                    <i class="fa fa-search"></i><span class="btn-desc">&nbsp;查询</span>
+                </button>
+                <a href="{:url('')}" class="btn btn-default btn-outline btn-rec">
+                    <i class="fa fa-refresh"></i><span class="btn-desc">&nbsp;重置</span>
+                </a>
+            </div>
+        </div>
+    </form>
+    <div class="panel-footer clearfix ">
+        <div class="pull-right">
+            {$list->render()}
+        </div>
+    </div>
+
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed">
+        <thead>
+        <tr>
+
+            <th width="50">订单号</th>
+            <th width="150">下单用户</th>
+            <th width="150">订单类型</th>
+            <th width="150">订单金额</th>
+            <th width="150">订单状态</th>
+            <th width="150">下单时间</th>
+            <th width="100">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr>
+            <td>{$vo.order_sn}</td>
+            <td>{$vo.member.nickname}</td>
+            <td>{if condition="$vo.type==1"}外卖{else/}堂吃{/if}</td>
+            <td>{$vo.order_price}</td>
+            <td>{switch name="vo.status"}
+                {case value="11"}申请退款{/case}
+                {case value="12"}退款中{/case}
+                {case value="13"}退款完成{/case}
+                {default /}error
+                {/switch}
+            </td>
+            <td>{$vo.create_time}</td>
+            <td>
+                {if condition="$vo.status == 11"}
+                <a href="{:url('orderWithdraw',['order_id'=>$vo.order_id])}" class="btn  btn-danger btn-outline btn-xs js-del-btn" text="退款后,款项会原路返回到用户,请谨慎操作！"><i class="fa fa-trash-o fa-fw"></i><span class="hidden-xs">退款</span></a>
+                {/if}
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>

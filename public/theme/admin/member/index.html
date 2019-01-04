@@ -1,0 +1,89 @@
+<div class="panel panel-default">
+    <form role="form" action="{:url('index')}" class="panel-body hidden-xs form-inline">
+        <div class="form-group">
+            <input type="text" placeholder="昵称" id="nickname" class="form-control" name="nickname" value="{:input('nickname')}">
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="手机号" id="user_phone" class="form-control" name="user_phone" value="{:input('user_phone')}">
+        </div>
+        <div class="form-group">
+            <select class=" form-control" name="sex" >
+                <option value="">性别</option>
+                <option value="female" {if condition="input('sex') eq 'female'"} selected{/if}>女性</option>
+                <option value="male" {if condition="input('sex') eq 'male'"} selected{/if}>男性</option>
+                <option value="none" {if condition="input('sex') eq 'none'"} selected{/if}>未知</option>
+            </select>
+        </div>
+         <div class="form-group group1">
+           <input type="text" name="start_time" class="form-control i-datestart"  id="date2" placeholder="注册日期(起)" value="{:input('start_time')}">
+        </div>
+        <div class="form-group group2">
+           <input type="text" name="end_time" class="form-control i-dateend" id="date3" placeholder="注册日期(末)" value="{:input('end_time')}">
+        </div>
+
+        <div class="form-group pull-right">
+            <div class="btn-group">
+                <button class="btn btn-primary btn-outline btn-w-m btn-rec">
+                    <i class="fa fa-search"></i><span class="btn-desc">&nbsp;查询</span>
+                </button>
+                <a href="{:url('')}" class="btn btn-default btn-outline btn-rec">
+                    <i class="fa fa-refresh"></i><span class="btn-desc">&nbsp;重置</span>
+                </a>
+            </div>
+        </div>
+    </form>
+
+    <div class="panel-footer clearfix ">
+        <div class="btn-group pull-left hidden-xs">
+            <div class="btn-group pull-left hidden-xs">
+	            <a href="{:url('del')}" class="btn btn-outline btn-default js-del-btn del-all" text="删除后将无法恢复，请谨慎操作">
+	                <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;删除
+	            </a>
+        	</div>
+        </div>
+        <div class="pull-right">
+        {$lists->render()}
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-condensed table-striped" id="sample001" data-name="cool-table">
+    <thead>
+        <tr>
+            <th width='1'><input type="checkbox" class="my-all-check" name="input[]"></th>
+            <th width="150" class="hidden-xs">用户ID</th>
+            <th width="150">昵称</th>
+            <th width="150" class="hidden-xs">性别</th>
+            <th width="150" class="hidden-xs">手机号码</th>
+            <th width="150" class="hidden-xs">积分</th>
+            <th width="150" class="hidden-xs">注册时间</th>
+            <th width="240">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {volist name="lists" id="vo"}
+		<tr>
+			<td width='1'><input type="checkbox" class="i-checks" value="{$vo.id}" name="input[]"></td>
+			<td>{$vo.id}</td>
+			<td>{$vo.nickname}</td>
+			<td>
+                {switch name="$vo.sex" }
+                {case value="female"}女{/case}
+                {case value="male"}男{/case}
+                {default /}未知
+                {/switch}
+            </td>
+			<td>{$vo.user_phone}</td>
+			<td>{$vo.integral}</td>
+			<td>{$vo.create_time}</td>
+            <td>
+				<span class="btn-group">
+                    <a href="{:url('edit',['id'=>$vo.id,'page'=>$nowpage])}" class="btn btn-default btn-outline btn-xs js-window-load" title="查看"><i class="fa fa-edit fa-fw"></i><span class="hidden-xs">查看</span></a>
+                </span>
+            </td>
+		</tr>
+        {/volist}
+    </tbody>
+</table>
+</div>

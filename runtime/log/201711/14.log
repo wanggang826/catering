@@ -1,0 +1,92 @@
+---------------------------------------------------------------
+[ 2017-11-14T17:22:54+08:00 ] 127.0.0.88 127.0.0.1 GET /admin/index/index.shtml
+[ info ] 127.0.0.88/admin/index/index.shtml [运行时间：0.586033s][吞吐率：1.71req/s] [内存消耗：2,401.80kb] [文件加载：64]
+[ error ] [2]include(D:\phpStudy\WWW\demo\runtime\cache\/config.cache.php): failed to open stream: No such file or directory[D:\phpStudy\WWW\demo\application\config.php:7]
+[ error ] [2]include(D:\phpStudy\WWW\demo\runtime\cache\/config.cache.php): failed to open stream: No such file or directory[D:\phpStudy\WWW\demo\application\config.php:7]
+[ error ] [2]include(): Failed opening 'D:\phpStudy\WWW\demo\runtime\cache\/config.cache.php' for inclusion (include_path='.;C:\php\pear')[D:\phpStudy\WWW\demo\application\config.php:7]
+[ info ] [ LANG ] D:\phpStudy\WWW\demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'connection' => 'close',
+  'host' => '127.0.0.88',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'admin',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.064003s ] mysql:dbname=demo;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_config` [ RunTime:0.062003s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_config` WHERE `ka_config`.`delete_time` IS NULL [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_menu` [ RunTime:0.018002s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_menu` WHERE (  `url` = '/admin/index/index.shtml' ) AND `ka_menu`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2017-11-14T17:22:54+08:00 ] 127.0.0.88 127.0.0.1 GET /admin/publics/login.shtml
+[ info ] 127.0.0.88/admin/publics/login.shtml [运行时间：0.168010s][吞吐率：5.95req/s] [内存消耗：2,453.16kb] [文件加载：66]
+[ error ] [2]include(D:\phpStudy\WWW\demo\runtime\cache\/config.cache.php): failed to open stream: No such file or directory[D:\phpStudy\WWW\demo\application\config.php:7]
+[ error ] [2]include(D:\phpStudy\WWW\demo\runtime\cache\/config.cache.php): failed to open stream: No such file or directory[D:\phpStudy\WWW\demo\application\config.php:7]
+[ error ] [2]include(): Failed opening 'D:\phpStudy\WWW\demo\runtime\cache\/config.cache.php' for inclusion (include_path='.;C:\php\pear')[D:\phpStudy\WWW\demo\application\config.php:7]
+[ info ] [ LANG ] D:\phpStudy\WWW\demo\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'publics',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=avmcdqkeigokgvdfrgragq7ec1',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'connection' => 'close',
+  'host' => '127.0.0.88',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'admin',
+)
+[ info ] [ RUN ] app\admin\controller\Publics->login[ D:\phpStudy\WWW\demo\application\admin\controller\Publics.php ]
+[ info ] [ VIEW ] D:\phpStudy\WWW\demo\public\theme\admin\publics\login.html [ array (
+  0 => 'module_name',
+  1 => 'controller_name',
+  2 => 'action_name',
+  3 => 'public_path',
+  4 => 'static_path',
+  5 => 'js',
+  6 => 'css',
+  7 => 'img',
+  8 => 'imgs',
+  9 => 'title',
+  10 => 'admin_title',
+  11 => 'nowpage',
+  12 => 'upload',
+  13 => 'menu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010001s ] mysql:dbname=demo;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_config` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_config` WHERE `ka_config`.`delete_time` IS NULL [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_menu` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_menu` WHERE (  `url` = '/admin/publics/login.shtml' ) AND `ka_menu`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.001000s ]

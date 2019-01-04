@@ -1,0 +1,165 @@
+---------------------------------------------------------------
+[ 2017-09-14T09:23:32+08:00 ] 127.0.0.1 127.0.0.1 GET /mobile/goods/goods_list
+[ info ] ka.com/mobile/goods/goods_list [运行时间：0.115006s][吞吐率：8.70req/s] [内存消耗：2,281.85kb] [文件加载：62]
+[ info ] [ LANG ] D:\www\alasika\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'mobile',
+    1 => 'goods',
+    2 => 'goods_list',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'ka.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'mobile',
+)
+[ info ] [ RUN ] app\mobile\controller\Goods->goods_list[ D:\www\alasika\application\mobile\controller\Goods.php ]
+[ info ] [ VIEW ] D:\www\alasika\public\theme\mobile\goods\goods_list.html [ array (
+  0 => 'module_name',
+  1 => 'controller_name',
+  2 => 'action_name',
+  3 => 'public_path',
+  4 => 'static_path',
+  5 => 'js',
+  6 => 'css',
+  7 => 'img',
+  8 => 'imgs',
+  9 => 'title',
+  10 => 'admin_title',
+  11 => 'nowpage',
+  12 => 'upload',
+  13 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013001s ] mysql:dbname=alasika;host=192.168.124.222;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_config` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_config` WHERE `ka_config`.`delete_time` IS NULL [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_goods` [ RunTime:0.020001s ]
+[ sql ] [ SQL ] SELECT `goods_id`,`goods_code`,`goods_name`,`goods_spell`,`sale_price`,`show_price`,`images`,`description`,`label` FROM `ka_goods` WHERE  `delete_time` = 0  AND `status` = 1 ORDER BY goods_id desc [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `ka_goods` WHERE  `delete_time` = 0  AND `status` = 1 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2017-09-14T09:23:32+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ info ] ka.com/ [运行时间：0.153009s][吞吐率：6.54req/s] [内存消耗：2,354.78kb] [文件加载：62]
+[ info ] [ LANG ] D:\www\alasika\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://ka.com/mobile/goods/goods_list',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'ka.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'admin',
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=alasika;host=192.168.124.222;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_config` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_config` WHERE `ka_config`.`delete_time` IS NULL [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_menu` [ RunTime:0.018001s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_menu` WHERE (  `url` = '/admin/index/index.shtml' ) AND `ka_menu`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_menu` WHERE (  `menu_id` = 0 ) AND `ka_menu`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2017-09-14T09:23:32+08:00 ] 127.0.0.1 127.0.0.1 GET /admin/publics/login.shtml
+[ info ] ka.com/admin/publics/login.shtml [运行时间：0.117006s][吞吐率：8.55req/s] [内存消耗：2,407.99kb] [文件加载：64]
+[ info ] [ LANG ] D:\www\alasika\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'publics',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=2b338l1it4v5585kejta56hgu1',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://ka.com/mobile/goods/goods_list',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'ka.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'prefix' => 'admin',
+)
+[ info ] [ RUN ] app\admin\controller\Publics->login[ D:\www\alasika\application\admin\controller\Publics.php ]
+[ info ] [ VIEW ] D:\www\alasika\public\theme\admin\publics\login.html [ array (
+  0 => 'module_name',
+  1 => 'controller_name',
+  2 => 'action_name',
+  3 => 'public_path',
+  4 => 'static_path',
+  5 => 'js',
+  6 => 'css',
+  7 => 'img',
+  8 => 'imgs',
+  9 => 'title',
+  10 => 'admin_title',
+  11 => 'nowpage',
+  12 => 'upload',
+  13 => 'menu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=alasika;host=192.168.124.222;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_config` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_config` WHERE `ka_config`.`delete_time` IS NULL [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `ka_menu` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `ka_menu` WHERE (  `url` = '/admin/publics/login.shtml' ) AND `ka_menu`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2017-09-14T09:23:32+08:00 ] 127.0.0.1 127.0.0.1 GET /favicon.ico
+[ info ] ka.com/favicon.ico [运行时间：0.030002s][吞吐率：33.33req/s] [内存消耗：1,157.14kb] [文件加载：45]
+[ info ] [ LANG ] D:\www\alasika\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=2b338l1it4v5585kejta56hgu1',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://ka.com/mobile/goods/goods_list',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.86 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'ka.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

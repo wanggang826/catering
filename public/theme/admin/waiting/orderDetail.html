@@ -1,0 +1,135 @@
+
+<div class="panel panel-default">
+    <div class="panel" style="border-bottom: 1px solid #e7eaec">
+        <p style="margin:5px;font-size: 14px;color: #1ab394;font-weight:bold">订单详情</p>
+    </div>
+    <form role="form" action="" class="form-inline panel-body">
+        <div class="form-group">
+            <p class="form-control" style="width:280px;">订单编号：{$order.order_sn}</p>
+        </div>
+        <div class="form-group">
+            <p class="form-control" style="width:280px;" >下单时间：{$order.create_time}</p>
+        </div>
+        <div class="form-group">
+            {if condition="$order.type eq 1"}
+            <p class="form-control" > 收货人：{$order.memberAddress.name}</p>
+            {else/}
+            <p class="form-control" > 下单用户：{$order.memberAddress.name}</p>
+            {/if}
+        </div>
+        <div class="form-group">
+            <p class="form-control" >  联系电话：{$order.phone}</p>
+        </div>
+        {if condition="$order.type eq 1"}
+        <div class="form-group">
+            <p class="form-control" style="width: 380px" > 详细地址：{$order.memberAddress.address}</p>
+        </div>
+        <div class="form-group">
+            <p class="form-control"> 状态：{$status[$order.status]}</p>
+        </div>
+        {/if}
+
+
+        <div class="form-group">
+            <p class="form-control" >订单金额：{$order.order_price}</p>
+        </div>
+    </form>
+    <br>
+</div>
+<br>
+<div class="panel panel-default">
+    <div class="panel" style="border-bottom: 1px solid #e7eaec">
+        <p style="margin:5px;font-size: 14px;color: #1ab394;font-weight:bold">商品详情</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th >商品编码</th>
+                <th >商品名称</th>
+                <th >数量</th>
+                <th >计量单位</th>
+                <th >价格</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="order.orderInfo" id="vo"}
+            <tr>
+                <td>{$vo.goods.goods_sn}</td>
+                <td>{$vo.goods.goods_name}</td>
+                <td>{$vo.goods_count}</td>
+                <td>{$vo.goods.goods_unit}</td>
+                <td>{$vo.goods.goods_price}</td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+<div class="panel panel-default">
+    <div class="panel" style="border-bottom: 1px solid #e7eaec">
+        <p style="margin:5px;font-size: 14px;color: #1ab394;font-weight:bold">其他费用</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th >费用名称</th>
+                <th >金额</th>
+            </tr>
+            </thead>
+            <tbody>
+            {if condition="$order.type eq 1"}
+            <tr>
+                <td width="50%">包装费</td>
+                <td>+￥{$order.new_fee}</td>
+            </tr>
+            <tr>
+                <td width="50%">配送费</td>
+                <td>+￥{$order.new_fee}</td>
+            </tr>
+            {/if}
+            <tr>
+                <td width="50%">新用户立减</td>
+                <td>-￥{$order.new_fee}</td>
+            </tr>
+            <tr>
+                <td width="50%">满减优惠</td>
+                <td>-￥{$order.over_fee}</td>
+            </tr>
+            <tr>
+                <td width="50%">优惠券</td>
+                <td>-￥{$order.coupon}</td>
+            </tr>
+            <tr>
+                <td width="50%">折扣商品</td>
+                <td>-￥{$order.discount}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    <br>
+
+<a href="{$url}" class="btn btn-default" js-title="返回列表" js-unique="true">
+    &nbsp;返回列表
+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+{if condition="$order.type eq 0"}
+<a href="{:url('changeStatus',['table'=>'order', 'pk'=>'order_id', 'id'=>$order.order_id,'status'=>1, 'location'=>'eatInOrder'])}" class="btn btn-default  btn-md js-del-btn " js-title="设置订单完成" text="确定设为订单完成吗？"js-unique="true">
+    &nbsp;&nbsp;已完成&nbsp;&nbsp;
+</a>
+{elseif condition="$order.status eq 0"/}
+<a href="{:url('changeStatus',['table'=>'order', 'pk'=>'order_id', 'id'=>$order.order_id,'status'=>1, 'location'=>'takeoutOrder'])}" class="btn btn-default  btn-md js-del-btn " js-title="设置订单完成" text="确定接单吗？"js-unique="true">
+    &nbsp;&nbsp;接单&nbsp;&nbsp;
+</a>
+{else /}
+<a href="{:url('changeStatus',['table'=>'order', 'pk'=>'order_id', 'id'=>$order.order_id,'status'=>2, 'location'=>'takeoutOrder'])}" class="btn btn-default  btn-md js-del-btn " js-title="设置订单完成" text="确定派送吗？"js-unique="true">
+    &nbsp;&nbsp;派送&nbsp;&nbsp;
+</a>
+{/if}
+
+
+
